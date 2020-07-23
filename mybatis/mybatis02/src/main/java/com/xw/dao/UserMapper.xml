@@ -31,5 +31,8 @@
         select * from my_user limit #{start},#{pageSize}
     </select>
 
+    <select id="getUserByRowBounds" resultType="com.xw.pojo.User">
+        select * from my_user
+    </select>
 
 </mapper>

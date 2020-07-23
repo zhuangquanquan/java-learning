@@ -14,4 +14,6 @@ public interface UserDao {
 
     public List<User> page(Map<String, Integer> map);
 
+    public List<User> getUserByRowBounds();
+
 }

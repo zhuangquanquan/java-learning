@@ -7,3 +7,4 @@ resultType和resultMap功能类似 ,都是返回对象信息 ,但是resultMap要
 ```
 3. log4j日志配置
 4. 分页查询
+limit 和 RowBounds

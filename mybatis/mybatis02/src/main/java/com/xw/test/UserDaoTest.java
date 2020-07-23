@@ -1,6 +1,7 @@
 package com.xw.test;
 
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import com.xw.dao.UserDao;
 import com.xw.pojo.User;
@@ -17,10 +18,11 @@ public class UserDaoTest {
     public static void main(String[] args) {
         getUserList();
         page();
+        getUseByRowBounds();
     }
 
     public static void getUserList() {
-        logger.info("进入方法......................");
+        logger.info("getUserList进入方法......................");
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserDao mapper = sqlSession.getMapper(UserDao.class);
         List<User> userList = mapper.getUserList();
@@ -28,11 +30,11 @@ public class UserDaoTest {
             System.out.println(user.toString());
         }
         sqlSession.close();
-        logger.info("结束方法......................");
+        logger.info("getUserList结束方法......................");
     }
 
     public static void page() {
-        logger.info("进入分页方法......................");
+        logger.info("page进入分页方法......................");
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserDao mapper = sqlSession.getMapper(UserDao.class);
 
@@ -46,6 +48,20 @@ public class UserDaoTest {
             System.out.println(user.toString());
         }
         sqlSession.close();
-        logger.info("结束分页方法......................");
+        logger.info("page结束分页方法......................");
+    }
+
+    public static void getUseByRowBounds() {
+        logger.info("getUseByRowBounds进入分页方法......................");
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        int current = 1;
+        int pageSize = 1;
+        RowBounds rowBounds = new RowBounds((current-1)*pageSize, pageSize);
+        List<User> userList = sqlSession.selectList("com.xw.dao.UserDao.getUserByRowBounds", null, rowBounds);
+        for (User user : userList) {
+            System.out.println(user.toString());
+        }
+        sqlSession.close();
+        logger.info("getUseByRowBounds结束分页方法......................");
     }
 }
