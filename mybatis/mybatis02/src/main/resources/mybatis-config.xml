@@ -6,6 +6,12 @@
 <configuration>
     <properties resource="db.properties" />
 
+    <!-- 日志设置 STDOUT_LOGGING、LOG4J，如果使用LOG4J需要导入log4j的jar包
+    -->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
     <!--1. 配置别名 <typeAlias type="com.xw.pojo.User" alias="zhuanquanquan"/>
         2. 或者在com.xw.pojo.User类中使用@alias注解
         优先使用别名
