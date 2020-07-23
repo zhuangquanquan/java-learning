@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--configuration核心配置文件，需要遵循顺序为properties、typeAliases、environments-->
+<configuration>
+    <properties resource="db.properties" />
+
+    <!--使用了typeAliases后，可以在UserMapper.xml中配置别名 -->
+    <typeAliases>
+        <typeAlias type="com.xw.pojo.User" alias="zhuanquanquan" />
+    </typeAliases>
+
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="com/xw/dao/UserMapper.xml" />
+    </mappers>
+</configuration>
