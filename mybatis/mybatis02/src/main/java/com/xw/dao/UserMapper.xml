@@ -4,7 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xw.dao.UserDao">
 
-    <resultMap id="userMap" type="com.xw.pojo.User" />
+    <!--
+    resultType和resultMap功能类似 ,都是返回对象信息 ,但是resultMap要更强大一些 ,可自定义。
+    因为resultMap要配置一下,表和类的一一对应关系,所以说就算你的字段名和你的实体类的属性名不一样也没关系,
+    都会给你映射出来
+    -->
+    <resultMap id="userMap" type="com.xw.pojo.User" >
+        <id column="id" property="id" />
+        <id column="username" property="username"/>
+        <id column="password" property="password" />
+    </resultMap>
 
     <!--<select id="getUserList" resultType="zqq" resultMap="userMap" >
         select * from my_user
