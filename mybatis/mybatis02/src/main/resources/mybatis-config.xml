@@ -6,9 +6,12 @@
 <configuration>
     <properties resource="db.properties" />
 
-    <!--使用了typeAliases后，可以在UserMapper.xml中配置别名 -->
+    <!--1. 配置别名 <typeAlias type="com.xw.pojo.User" alias="zhuanquanquan"/>
+        2. 或者在com.xw.pojo.User类中使用@alias注解
+        优先使用别名
+     -->
     <typeAliases>
-        <typeAlias type="com.xw.pojo.User" alias="zhuanquanquan" />
+        <typeAlias type="com.xw.pojo.User" />
     </typeAliases>
 
 
