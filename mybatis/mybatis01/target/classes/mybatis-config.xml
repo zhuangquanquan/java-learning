@@ -19,6 +19,6 @@
     </environments>
 
     <mappers>
-        <mapper resource="com/kuang/dao/UserMapper.xml" />
+        <mapper resource="com/xw/dao/UserMapper.xml" />
     </mappers>
 </configuration>

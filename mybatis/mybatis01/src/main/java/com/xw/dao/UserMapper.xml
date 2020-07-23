@@ -2,20 +2,20 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kuang.dao.UserDao">
-    <select id="getUserList" resultType="com.kuang.pojo.User">
+<mapper namespace="com.xw.dao.UserDao">
+    <select id="getUserList" resultType="com.xw.pojo.User">
         select * from my_user
     </select>
 
-    <select id="getById" resultType="com.kuang.pojo.User">
+    <select id="getById" resultType="com.xw.pojo.User">
         select * from my_user where id = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.kuang.pojo.User" >
+    <insert id="insert" parameterType="com.xw.pojo.User" >
         insert into my_user(id, username, password) values (#{id}, #{username}, #{password})
     </insert>
 
-    <update id="update" parameterType="com.kuang.pojo.User">
+    <update id="update" parameterType="com.xw.pojo.User">
         update my_user set username=#{username}, password=#{password} where id = ${id}
     </update>
     
@@ -23,11 +23,11 @@
         delete from my_user where id = #{id}
     </delete>
 
-    <select id="getLikeUserList" resultType="com.kuang.pojo.User">
+    <select id="getLikeUserList" resultType="com.xw.pojo.User">
         select * from my_user where username like "%"#{username}"%"
     </select>
 
-    <select id="getMapUserList" parameterType="map" resultType="com.kuang.pojo.User">
+    <select id="getMapUserList" parameterType="map" resultType="com.xw.pojo.User">
           select * from my_user where username=#{name}
     </select>
 

@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b204848b-b56f-4db5-b02c-5ed16c19330c" name="Default Changelist" comment="" />
+    <list default="true" id="b204848b-b56f-4db5-b02c-5ed16c19330c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis01/src/main/java/com/kuang/dao/UserDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis01/src/main/java/com/kuang/dao/UserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis01/src/main/java/com/kuang/pojo/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis01/src/main/java/com/kuang/test/UserDaoTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis01/src/main/java/com/kuang/util/MybatisUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis01/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis01/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis01/src/test/java/com/kuang/dao/UserDaoTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis01/target/classes/com/kuang/dao/UserDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis01/target/classes/com/kuang/dao/UserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis01/target/classes/com/kuang/pojo/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis01/target/classes/com/kuang/test/UserDaoTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis01/target/classes/com/kuang/util/MybatisUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis01/target/test-classes/com/kuang/dao/UserDaoTest.class" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +30,14 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1f2gp4JSaZE6XJcLslTsrWORVm2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="GO_FMT" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.import.settings.migrated" value="true" />
@@ -38,17 +59,17 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.UserDaoTest.getById">
+  <component name="RunManager" selected="JUnit.UserDaoTest.getUserList">
     <configuration name="UserDaoTest.delete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mybatis01" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kuang.dao.*" />
+          <option name="PATTERN" value="com.xw.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.kuang.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.kuang.dao.UserDaoTest" />
+      <option name="PACKAGE_NAME" value="com.xw.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.xw.dao.UserDaoTest" />
       <option name="METHOD_NAME" value="delete" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -59,12 +80,12 @@
       <module name="mybatis01" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kuang.dao.*" />
+          <option name="PATTERN" value="com.xw.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.kuang.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.kuang.dao.UserDaoTest" />
+      <option name="PACKAGE_NAME" value="com.xw.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.xw.dao.UserDaoTest" />
       <option name="METHOD_NAME" value="getById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -75,12 +96,12 @@
       <module name="mybatis01" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kuang.dao.*" />
+          <option name="PATTERN" value="com.xw.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.kuang.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.kuang.dao.UserDaoTest" />
+      <option name="PACKAGE_NAME" value="com.xw.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.xw.dao.UserDaoTest" />
       <option name="METHOD_NAME" value="getLikeUserList" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -91,12 +112,12 @@
       <module name="mybatis01" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kuang.dao.*" />
+          <option name="PATTERN" value="com.xw.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.kuang.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.kuang.dao.UserDaoTest" />
+      <option name="PACKAGE_NAME" value="com.xw.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.xw.dao.UserDaoTest" />
       <option name="METHOD_NAME" value="getMapUserList" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -107,12 +128,12 @@
       <module name="mybatis01" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kuang.dao.*" />
+          <option name="PATTERN" value="com.xw.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.kuang.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.kuang.dao.UserDaoTest" />
+      <option name="PACKAGE_NAME" value="com.xw.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.xw.dao.UserDaoTest" />
       <option name="METHOD_NAME" value="getUserList" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -121,8 +142,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserDaoTest.getById" />
         <item itemvalue="JUnit.UserDaoTest.getUserList" />
+        <item itemvalue="JUnit.UserDaoTest.getById" />
         <item itemvalue="JUnit.UserDaoTest.getMapUserList" />
         <item itemvalue="JUnit.UserDaoTest.getLikeUserList" />
         <item itemvalue="JUnit.UserDaoTest.delete" />
@@ -143,10 +164,22 @@
       <option name="presentableId" value="Default" />
       <updated>1595421780555</updated>
       <workItem from="1595421783734" duration="9833000" />
+      <workItem from="1595489129552" duration="304000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

@@ -1,4 +1,4 @@
-package com.kuang.pojo;
+package com.xw.pojo;
 
 public class User {
 

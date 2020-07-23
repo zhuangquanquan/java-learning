@@ -1,8 +1,8 @@
-package com.kuang.test;
+package com.xw.test;
 
-import com.kuang.dao.UserDao;
-import com.kuang.pojo.User;
-import com.kuang.util.MybatisUtils;
+import com.xw.dao.UserDao;
+import com.xw.pojo.User;
+import com.xw.util.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;

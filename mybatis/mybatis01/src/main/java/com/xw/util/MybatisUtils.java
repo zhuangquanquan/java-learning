@@ -1,4 +1,4 @@
-package com.kuang.util;
+package com.xw.util;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

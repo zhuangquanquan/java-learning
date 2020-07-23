@@ -1,6 +1,6 @@
-package com.kuang.dao;
+package com.xw.dao;
 
-import com.kuang.pojo.User;
+import com.xw.pojo.User;
 
 import java.util.List;
 import java.util.Map;
