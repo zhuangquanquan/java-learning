@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xw.dao.StudentMapper">
+
+    <resultMap id="studentsTeacher" type="com.xw.pojo.Student" >
+        <id property="id" column="sid" />
+        <id property="name" column="sname" />
+        <association property="teacher" javaType="com.xw.pojo.Teacher">
+            <result property="id" column="tid" />
+            <result property="name" column="tname" />
+        </association>
+    </resultMap>
+
+    <select id="getStudentsTeacher" resultMap="studentsTeacher" >
+       select s.id as sid, s.name as sname, t.id as tid, t.name as tname from my_student s, my_teacher t where s.tid = t.id;
+    </select>
+
+
+    <select id="getStudentList" resultType="com.xw.pojo.Student" >
+        select * from my_student;
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--configuration核心配置文件，需要遵循顺序为properties、typeAliases、environments-->
+<configuration>
+    <properties resource="db.properties" />
+
+    <!-- 日志设置 STDOUT_LOGGING、LOG4J，如果使用LOG4J需要导入log4j的jar包
+    -->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <!--1. 配置别名 <typeAlias type="com.xw.pojo.User" alias="zhuanquanquan"/>
+        2. 或者在com.xw.pojo.User类中使用@alias注解
+        优先使用别名
+     -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="mapper/StudentMapper.xml" />
+        <mapper resource="mapper/TeacherMapper.xml" />
+
+        <!-- 注意使用class，需要mapper.xml和实体类在同一个目录 -->
+       <!--<mapper class="com.xw.dao.StudentMapper" />
+        <mapper class="com.xw.dao.TeacherMapper" />-->
+    </mappers>
+
+</configuration>
