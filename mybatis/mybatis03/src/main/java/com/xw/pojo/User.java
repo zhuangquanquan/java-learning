@@ -1,8 +1,5 @@
 package com.xw.pojo;
 
-import org.apache.ibatis.type.Alias;
-
-@Alias("zqq")
 public class User {
 
     private long id;
