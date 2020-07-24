@@ -5,7 +5,7 @@
 
 <mapper namespace="com.xw.dao.UserDao">
 
-    <cache eviction="FIFO" flushInterval="50000" size="512" readOnly="true" />
+    <cache eviction="FIFO" flushInterval="5000" size="512" readOnly="true" />
 
     <resultMap id="userMap" type="com.xw.pojo.User" >
         <id column="id" property="id" />

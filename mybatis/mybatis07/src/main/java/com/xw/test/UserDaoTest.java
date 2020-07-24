@@ -32,7 +32,15 @@ public class UserDaoTest {
         for (User user : userList) {
             System.out.println("user1:" + user.toString());
         }
-        UserDao mapper2 = sqlSession.getMapper(UserDao.class);
+
+        //因为缓存只开启了5秒，所有线程等待6秒后会没有数据
+        /*try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
+        SqlSession sqlSession2 = MybatisUtils.getSqlSession();
+        UserDao mapper2 = sqlSession2.getMapper(UserDao.class);
         List<User> userList2 = mapper2.getUserList(map);
         for (User user2 : userList2) {
             System.out.println("user2:" + user2.toString());
