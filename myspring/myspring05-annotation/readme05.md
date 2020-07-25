@@ -67,3 +67,18 @@ public class UserQualifier {
 </beans>
 ```
 
+####3. bean-resource.xml
+结论：先进行byName查找，失败；再进行byType查找，成功。
+多个使用
+```java
+public class UserResource {
+
+    @Resource(name="dog1")
+    private Dog dog;
+
+    public Dog getDog() {
+        return dog;
+    }
+}
+```
+
