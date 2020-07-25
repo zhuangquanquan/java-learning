@@ -25,5 +25,8 @@ public class AliasTest {
 
         Alias alias5 = (Alias) context.getBean("alias5");
         alias5.say();
+
+        Alias alias6 = (Alias) context.getBean("alias6");
+        alias6.say();
     }
 }
