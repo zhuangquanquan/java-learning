@@ -12,8 +12,8 @@
         <module>myspring01-ioc</module>
         <module>myspring02-helloworld</module>
         <module>myspring03-di</module>
-        <module>myspring06</module>
-        <module>myspring07</module>
+        <module>myspring04-autowired</module>
+        <module>myspring05-annotation</module>
         <module>myspring08</module>
         <module>myspring09</module>
         <module>myspring10</module>
