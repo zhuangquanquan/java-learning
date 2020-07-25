@@ -9,8 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>myspring01</module>
-        <module>myspring02</module>
+        <module>myspring01-ioc</module>
+        <module>myspring02-helloworld</module>
         <module>myspring03</module>
         <module>myspring05</module>
         <module>myspring06</module>

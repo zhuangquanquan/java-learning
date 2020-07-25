@@ -1,5 +1,6 @@
-package com.xw;
+package com.xw.test;
 
+import com.xw.pojo.Hello;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
