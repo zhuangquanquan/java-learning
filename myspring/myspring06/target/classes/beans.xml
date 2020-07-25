@@ -7,10 +7,10 @@
         https://www.springframework.org/schema/context/spring-context.xsd">
 
         <context:annotation-config />
-        <bean id="dog1" class="com.kuang.Dog" />
-        <bean id="dog2" class="com.kuang.Dog" />
-        <bean id="cat1" class="com.kuang.Cat" />
-        <bean id="cat2" class="com.kuang.Cat" />
-        <bean id="user" class="com.kuang.User" />
+        <bean id="dog1" class="com.xw.Dog" />
+        <bean id="dog2" class="com.xw.Dog" />
+        <bean id="cat1" class="com.xw.Cat" />
+        <bean id="cat2" class="com.xw.Cat" />
+        <bean id="user" class="com.xw.User" />
 
 </beans>

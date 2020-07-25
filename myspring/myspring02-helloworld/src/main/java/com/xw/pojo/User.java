@@ -1,11 +1,15 @@
-package com.xw;
+package com.xw.pojo;
 
 public class User {
 
     private String name;
 
     public User() {
-        System.out.println("User的无参构造");
+        System.out.println("进入User的无参构造");
+    }
+
+    public User(String name) {
+        this.name = name;
     }
 
     public String getName() {
@@ -17,6 +21,7 @@ public class User {
     }
 
     public void say() {
-        System.out.println("hello:" + name);
+        System.out.println("user ：" + name);
     }
+
 }

@@ -4,11 +4,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="address" class="com.kuang.Address">
+    <bean id="address" class="com.xw.Address">
         <property name="address" value="上饶" />
     </bean>
 
-    <bean id="student" class="com.kuang.Student">
+    <bean id="student" class="com.xw.Student">
         <property name="name" value="zhangsan" />
         <property name="address" ref="address" />
         <property name="books">

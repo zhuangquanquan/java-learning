@@ -4,8 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="user" class="com.xw.User">
-        <property name="name" value="kuahngshen" />
+    <bean id="user1" class="com.xw.pojo.User1">
+        <property name="name" value="zhuangquanquan1" />
     </bean>
 
 </beans>

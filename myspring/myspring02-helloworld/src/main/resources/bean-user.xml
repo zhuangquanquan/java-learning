@@ -4,11 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="user2" class="com.xw.UserT">
-        <constructor-arg name="name" value="kuangshen2" />
+    <bean id="user" class="com.xw.pojo.User">
+        <property name="name" value="kuahngshen" />
     </bean>
 
-    <alias name="user2" alias="userT" />
-
-    <import resource="bean1.xml" />
+    <import resource="bean-user1.xml" />
+    <import resource="bean-user2.xml" />
 </beans>

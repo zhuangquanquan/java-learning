@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class HelloTest {
 
     public static void main(String[] args) {
-        ApplicationContext context =  new ClassPathXmlApplicationContext("beans.xml");
+        ApplicationContext context =  new ClassPathXmlApplicationContext("bean-hello.xml");
         Hello hello = (Hello) context.getBean("hello");
         hello.say();
     }
