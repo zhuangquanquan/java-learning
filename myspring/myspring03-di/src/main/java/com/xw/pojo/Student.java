@@ -1,4 +1,4 @@
-package com.xw;
+package com.xw.pojo;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package com.xw;
+package com.xw.pojo;
 
 public class Address {
 
