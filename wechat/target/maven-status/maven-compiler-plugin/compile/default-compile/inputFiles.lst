@@ -1,0 +1,5 @@
+/develop/workspace/idea/wechat/src/main/java/cn/com/rivercloud/wechat/WechatApplication.java
+/develop/workspace/idea/wechat/src/main/java/cn/com/rivercloud/wechat/pojo/User.java
+/develop/workspace/idea/wechat/src/main/java/cn/com/rivercloud/wechat/config/DruidConfig.java
+/develop/workspace/idea/wechat/src/main/java/cn/com/rivercloud/wechat/controller/UserController.java
+/develop/workspace/idea/wechat/src/main/java/cn/com/rivercloud/wechat/dao/UserMapper.java
