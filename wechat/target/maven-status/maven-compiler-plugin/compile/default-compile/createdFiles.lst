@@ -1,6 +1,0 @@
-META-INF/spring-configuration-metadata.json
-cn/com/rivercloud/wechat/dao/UserMapper.class
-cn/com/rivercloud/wechat/pojo/User.class
-cn/com/rivercloud/wechat/WechatApplication.class
-cn/com/rivercloud/wechat/config/DruidConfig.class
-cn/com/rivercloud/wechat/controller/UserController.class
