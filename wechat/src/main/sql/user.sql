@@ -11,9 +11,21 @@ CREATE TABLE `wechat_user` (
     `description` VARCHAR(256) NULL DEFAULT NULL,
     `createTime` BIGINT(10) NULL DEFAULT NULL,
     `updateTime` BIGINT(10) NULL DEFAULT NULL,
-    `role` VARCHAR(64) NULL DEFAULT NULL,
+     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `wechat_user` VALUES ('1', 'admin', '123456', '1', '1', '1', '1', '1', '1', '1', '1', 'admin');
-INSERT INTO `wechat_user` VALUES ('2', 'manage', '123456', '1', '1', '1', '1', '1', '1', '1', '1', 'manage');
-INSERT INTO `wechat_user` VALUES ('3', 'user', '123456', '1', '1', '1', '1', '1', '1', '1', '1', 'user');
+DROP TABLE IF EXISTS `wechat_role`;
+CREATE TABLE `wechat_role` (
+    `id` BIGINT(10) NOT NULL,
+    `role` VARCHAR(64) NOT NULL,
+    `permission` VARCHAR(64) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `wechat_user` VALUES ('1', 'admin', '123456', '1', '1', '1', '1', '1', '1', '1', '1');
+INSERT INTO `wechat_user` VALUES ('2', 'manage', '123456', '1', '1', '1', '1', '1', '1', '1', '1');
+INSERT INTO `wechat_user` VALUES ('3', 'user', '123456', '1', '1', '1', '1', '1', '1', '1', '1');
+
+INSERT INTO `wechat_role` VALUES ('1', 'admin', 'admin');
+INSERT INTO `wechat_role` VALUES ('2', 'manage', 'manage');
+INSERT INTO `wechat_role` VALUES ('3', 'user', 'user');
