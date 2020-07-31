@@ -52,10 +52,9 @@ public class LoginController {
         // 执行认证登陆
         subject.login(token);
         //根据权限，指定返回数据
-        User user = userService.getByUserName(username);
-        String role = user.getRole();
+        String role = userService.getRole(username);
         if ("user".equals(role)) {
-            return new JsonResponseBuilder().success(true).message("欢迎登陆").build();
+            return new JsonResponseBuilder().success(true).message("欢迎登陆用户界面").build();
         }
         if ("manage".equals(role)) {
             return new JsonResponseBuilder().success(true).message("欢迎登陆客户经理管理界面").build();
