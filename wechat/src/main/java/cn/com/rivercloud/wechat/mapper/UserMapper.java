@@ -12,4 +12,10 @@ public interface UserMapper {
     List<User> getUserList();
 
     User validateAccount(@Param("username") String username, @Param("password") String password);
+
+    User getByUserName(@Param("username") String username);
+
+    String getRole(@Param("username") String username);
+
+    String getPassword(@Param("username") String username);
 }

@@ -1,10 +1,5 @@
 package cn.com.rivercloud.wechat.common.lang;
 
-/**
- * @Description TODO
- * @Author wanghao@cncloudsec.com
- * @Date 19-5-7 下午3:13
- */
 public interface Pagination {
 
     int getCurrent();

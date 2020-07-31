@@ -2,6 +2,8 @@ package cn.com.rivercloud.wechat.common.exception;
 
 import cn.com.rivercloud.wechat.common.lang.JsonResponseBuilder;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.shiro.authc.AccountException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -51,6 +53,12 @@ public class GlobalExceptionHandler {
     public JSONObject handler(RuntimeException e) {
         logger.error("运行时异常：----------------{}", e);
         return new JsonResponseBuilder().success(false).message(e.getMessage()).build();
+    }
+
+    // shiro
+    @ExceptionHandler(value = AccountException.class)
+    public JSONObject handler(AccountException e) {
+        return new JsonResponseBuilder().success(false).message("用户名或密码错误").build();
     }
 
     @ExceptionHandler(value = Exception.class)

@@ -23,4 +23,19 @@ public class UserServiceImpl implements UserService {
     public User validateAccount(String username, String password) {
         return userMapper.validateAccount(username, password);
     }
+
+    @Override
+    public User getByUserName(String username) {
+        return userMapper.getByUserName(username);
+    }
+
+    @Override
+    public String getRole(String username) {
+        return userMapper.getRole(username);
+    }
+
+    @Override
+    public String getPassword(String username) {
+        return userMapper.getPassword(username);
+    }
 }
