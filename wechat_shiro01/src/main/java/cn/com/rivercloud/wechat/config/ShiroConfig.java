@@ -1,6 +1,6 @@
 package cn.com.rivercloud.wechat.config;
 
-import cn.com.rivercloud.wechat.filter.JWTFilter;
+import cn.com.rivercloud.wechat.jwt.JwtFilter;
 import cn.com.rivercloud.wechat.shiro.UserRealm;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
@@ -8,9 +8,11 @@ import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
+import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,19 +23,19 @@ import java.util.Map;
 
 @Configuration
 public class ShiroConfig {
+
     /**
      * 先走 filter ，然后 filter 如果检测到请求头存在 token，则用 token 去 login，走 Realm 去验证
      */
     @Bean
-    public ShiroFilterFactoryBean factory(SecurityManager securityManager) {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager, JwtFilter jwtFilter) {
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
-
+        factoryBean.setSecurityManager(securityManager);
         // 添加自己的过滤器并且取名为jwt
         Map<String, Filter> filterMap = new LinkedHashMap<>();
         //设置我们自定义的JWT过滤器
-        filterMap.put("jwt", new JWTFilter());
+        filterMap.put("jwt", jwtFilter);
         factoryBean.setFilters(filterMap);
-        factoryBean.setSecurityManager(securityManager);
         // 设置无权限时跳转的 url;
         factoryBean.setUnauthorizedUrl("/unauthorized/无权限");
         Map<String, String> filterRuleMap = new HashMap<>();
@@ -88,5 +90,10 @@ public class ShiroConfig {
     @Bean
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
+    }
+
+    @Bean
+    public JwtFilter jwtFilter () {
+        return new JwtFilter();
     }
 }

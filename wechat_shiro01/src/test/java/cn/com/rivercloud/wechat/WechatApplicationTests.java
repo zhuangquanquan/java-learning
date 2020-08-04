@@ -1,5 +1,6 @@
 package cn.com.rivercloud.wechat;
 
+import cn.com.rivercloud.wechat.jwt.JwtUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +16,9 @@ class WechatApplicationTests {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    JwtUtils jwtUtils;
+
     @Test
     void contextLoads() {
         //看一下默认数据源
@@ -28,7 +32,7 @@ class WechatApplicationTests {
             //DruidDataSource druidDataSource = (DruidDataSource) dataSource;
             //System.out.println("druidDataSource 数据源最大连接数：" + druidDataSource.getMaxActive());
             //System.out.println("druidDataSource 数据源初始化连接数：" + druidDataSource.getInitialSize());
-
+            System.out.println(jwtUtils);
             //关闭连接
             //connection.close();
         } catch (SQLException e) {

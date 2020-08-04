@@ -1,8 +1,6 @@
 package cn.com.rivercloud.wechat.controller;
 
-import cn.com.rivercloud.wechat.common.lang.JsonResponseBuilder;
-import com.alibaba.fastjson.JSONObject;
-import org.apache.shiro.authz.annotation.Logical;
+import cn.com.rivercloud.wechat.common.lang.Result;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +14,7 @@ public class UserController {
 
     @GetMapping("/getMessage")
     @RequiresRoles("user")
-    public JSONObject getMessage() {
-        JsonResponseBuilder responseBuilder = new JsonResponseBuilder();
-        return responseBuilder.success(true).message("您拥有【用户】权限，可以获得该接口的信息").build();
+    public Result getMessage() {
+        return Result.succ("您拥有【用户】权限，可以获得该接口的信息");
     }
 }

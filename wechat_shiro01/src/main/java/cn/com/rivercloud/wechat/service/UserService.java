@@ -1,14 +1,12 @@
 package cn.com.rivercloud.wechat.service;
 
-import org.apache.ibatis.annotations.Param;
+import cn.com.rivercloud.wechat.pojo.User;
 
 public interface UserService {
 
+    User getById(long id);
+
+    User getByUserName(String username);
+
     String getRole(String username);
-
-    String getPassword(String username);
-
-    String getRolePermission(@Param("username") String username);
-
-    String getPermission(@Param("username") String username);
 }

@@ -2,16 +2,20 @@ package cn.com.rivercloud.wechat.pojo;
 
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
+@Accessors(chain = true)
 @Data
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private long id;
     private String userName;
     private String password;
-    //1. 客户经理
-    //2. 客户
-    private String type;
+    private String realName;
     private String phone;
     private String email;
     private int state;
@@ -20,7 +24,6 @@ public class User {
     private long createTime;
     private long updateTime;
     private String role;
-    private String permission;
 
     public long getId() {
         return id;
@@ -46,12 +49,12 @@ public class User {
         this.password = password;
     }
 
-    public String getType() {
-        return type;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getPhone() {
@@ -116,13 +119,5 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public String getPermission() {
-        return permission;
-    }
-
-    public void setPermission(String permission) {
-        this.permission = permission;
     }
 }
