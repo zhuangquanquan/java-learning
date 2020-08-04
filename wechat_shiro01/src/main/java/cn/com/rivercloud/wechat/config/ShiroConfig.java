@@ -8,11 +8,8 @@ import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
-import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -37,12 +34,12 @@ public class ShiroConfig {
         filterMap.put("jwt", jwtFilter);
         factoryBean.setFilters(filterMap);
         // 设置无权限时跳转的 url;
-        factoryBean.setUnauthorizedUrl("/unauthorized/无权限");
+        //factoryBean.setUnauthorizedUrl("/unauthorized/无权限");
         Map<String, String> filterRuleMap = new HashMap<>();
         // 所有请求通过我们自己的JWT Filter
         filterRuleMap.put("/**", "jwt");
         // 访问 /unauthorized/** 不通过JWTFilter
-        filterRuleMap.put("/unauthorized/**", "anon");
+        //filterRuleMap.put("/unauthorized/**", "anon");
         factoryBean.setFilterChainDefinitionMap(filterRuleMap);
         return factoryBean;
     }

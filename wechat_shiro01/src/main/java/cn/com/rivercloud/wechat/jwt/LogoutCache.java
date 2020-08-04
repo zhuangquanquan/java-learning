@@ -6,8 +6,8 @@
 package cn.com.rivercloud.wechat.jwt;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -17,10 +17,8 @@ import java.util.concurrent.ConcurrentMap;
  * 	注销时存入 token的id，使该token作废
  * 	定时清理，当token过期时间小于当前时间则清理
  */
-
+@Slf4j
 public class LogoutCache {
-
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private static LogoutCache me = new LogoutCache();
 
@@ -71,7 +69,7 @@ public class LogoutCache {
 				try {
 					Thread.sleep(3600*1000); //每小时轮询一次
 				} catch (InterruptedException e) {
-					logger.error(e.getMessage(), e);
+					log.error(e.getMessage(), e);
 				}
 				
 			}

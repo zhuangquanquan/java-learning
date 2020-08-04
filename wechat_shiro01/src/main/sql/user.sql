@@ -18,4 +18,4 @@ CREATE TABLE `wechat_user` (
 
 INSERT INTO `wechat_user` VALUES ('1', 'admin1', '123456', '管理员', '1', '1', '1', '1', '1', '1', '1', 'admin');
 INSERT INTO `wechat_user` VALUES ('2', 'manage1', '123456', '客户经理', '1', '1', '1', '1', '1', '1', '1', 'manage');
-INSERT INTO `wechat_user` VALUES ('3', 'user1', '123456', '用户', '1', '1', '1', '1', '1', '1', '1', 'user');
+INSERT INTO `wechat_user` VALUES ('3', 'user1', '123456', '用户', '1', '1', '1', '1', '1', '1', '1', 'customer');

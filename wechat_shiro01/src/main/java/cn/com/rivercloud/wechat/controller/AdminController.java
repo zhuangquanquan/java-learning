@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 //管理员
+@RequiresRoles("admin")
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
 
     @GetMapping("/getMessage")
-    @RequiresRoles("admin")
     public Result getMessage() {
         return Result.succ("您拥有【管理员】权限，可以获得该接口的信息");
     }

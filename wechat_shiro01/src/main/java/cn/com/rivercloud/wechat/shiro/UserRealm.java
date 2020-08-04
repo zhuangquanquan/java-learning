@@ -4,8 +4,6 @@ import cn.com.rivercloud.wechat.jwt.JwtToken;
 import cn.com.rivercloud.wechat.jwt.JwtUtils;
 import cn.com.rivercloud.wechat.pojo.User;
 import cn.com.rivercloud.wechat.service.impl.UserServiceImpl;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;

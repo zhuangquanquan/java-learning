@@ -3,12 +3,10 @@ package cn.com.rivercloud.wechat.jwt;
 import cn.com.rivercloud.wechat.common.lang.Result;
 import cn.hutool.json.JSONUtil;
 import io.jsonwebtoken.Claims;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,11 +15,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.URLEncoder;
 
+@Slf4j
 public class JwtFilter extends BasicHttpAuthenticationFilter {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     JwtUtils jwtUtils;
@@ -48,8 +44,13 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
                 }
                 return executeLogin(request, servletResponse);
             } catch (Exception e) {
-                logger.error("",e);
-                //token 错误
+                log.error("认证异常",e);
+                HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
+                httpResponse.setContentType("application/json;charset=utf-8");
+                try {
+                    httpResponse.getWriter().print(JSONUtil.toJsonStr(Result.fail(401,"认证异常",null)));
+                } catch (IOException ex) {
+                }
                 return false;
             }
         }
@@ -87,19 +88,4 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         return super.preHandle(request, response);
     }
 
-    /**
-     * 将非法请求跳转到 /unauthorized/**
-     */
-    private boolean responseError(ServletResponse response, String message) {
-        try {
-            HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-            //设置编码，否则中文字符在重定向时会变为空字符串
-            message = URLEncoder.encode(message, "UTF-8");
-            httpServletResponse.sendRedirect("/unauthorized/" + message);
-            return false;
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-            return false;
-        }
-    }
 }
