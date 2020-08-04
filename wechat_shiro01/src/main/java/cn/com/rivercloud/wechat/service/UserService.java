@@ -1,12 +1,9 @@
 package cn.com.rivercloud.wechat.service;
 
-import cn.com.rivercloud.wechat.pojo.User;
 
-public interface UserService {
+import cn.com.rivercloud.wechat.entity.User;
+import com.baomidou.mybatisplus.extension.service.IService;
 
-    User getById(long id);
+public interface UserService extends IService<User> {
 
-    User getByUserName(String username);
-
-    String getRole(String username);
 }

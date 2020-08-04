@@ -2,7 +2,7 @@ package cn.com.rivercloud.wechat.shiro;
 
 import cn.com.rivercloud.wechat.jwt.JwtToken;
 import cn.com.rivercloud.wechat.jwt.JwtUtils;
-import cn.com.rivercloud.wechat.pojo.User;
+import cn.com.rivercloud.wechat.entity.User;
 import cn.com.rivercloud.wechat.service.impl.UserServiceImpl;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -63,7 +63,7 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         User user = userService.getById(Long.valueOf(userId));
         //获得该用户角色
-        String role = userService.getRole(user.getUserName());
+        //User user = userService.getOne(new QueryWrapper<User>().eq("username", user.getUserName()));
         //每个角色拥有默认的权限
         //String rolePermission = userService.getRolePermission(user.getUserName());
         //每个用户可以设置新的权限
@@ -71,7 +71,7 @@ public class UserRealm extends AuthorizingRealm {
         Set<String> roleSet = new HashSet<>();
         Set<String> permissionSet = new HashSet<>();
         //需要将 role, permission 封装到 Set 作为 info.setRoles(), info.setStringPermissions() 的参数
-        roleSet.add(role);
+        roleSet.add(user.getRole());
         //permissionSet.add(rolePermission);
         //permissionSet.add(permission);
         //设置该用户拥有的角色和权限

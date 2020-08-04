@@ -38,7 +38,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
             int length = cookies.length;
             for(int i = 0; i < length; ++i) {
                 Cookie cookie = cookies[i];
-                if (cookie.getName().equals("token")) {
+                if (cookie.getName().equals(jwtUtils.getHeader())) {
                     jwt = cookie.getValue();
                     break;
                 }
@@ -55,6 +55,10 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
                     HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
                     httpResponse.setContentType("application/json;charset=utf-8");
                     httpResponse.getWriter().print(JSONUtil.toJsonStr(Result.fail(401,"token已失效，请重新登录",null)));
+                    Cookie cookie = new Cookie(jwtUtils.getHeader(), null);
+                    cookie.setPath(request.getContextPath() + "/");
+                    cookie.setHttpOnly(true);
+                    httpResponse.addCookie(cookie);
                     return false;
                 }
                 return executeLogin(request, servletResponse);
@@ -85,7 +89,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
             int length = cookies.length;
             for(int i = 0; i < length; ++i) {
                 Cookie cookie = cookies[i];
-                if (cookie.getName().equals("token")) {
+                if (cookie.getName().equals(jwtUtils.getHeader())) {
                     token = cookie.getValue();
                     break;
                 }

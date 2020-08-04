@@ -5,25 +5,6 @@
 
 <mapper namespace="cn.com.rivercloud.wechat.mapper.UserMapper">
 
-    <resultMap id="UserTable" type="User">
-        <id column="id" property="id"/>
-        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
-        <result column="userName" property="userName"/>
-        <result column="realName" property="realName"/>
-        <result column="role" property="role"/>
-    </resultMap>
-
-    <select id="getById" parameterType="long" resultType="User">
-       select * from wechat_user where id=#{id};
-    </select>
-
-    <select id="getByUserName" resultType="User">
-       select * from wechat_user where userName=#{username};
-    </select>
-
-    <select id="getRole" parameterType="String" resultType="String">
-       select role from wechat_user where userName=#{username};
-    </select>
 
 
 </mapper>
