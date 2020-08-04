@@ -44,34 +44,32 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
                 }
             }
         }
-
         if(StringUtils.isEmpty(jwt)) {
             return true;
-        } else {
-            try {
-                // 校验jwt
-                Claims claim = jwtUtils.getClaimByToken(jwt);
-                if(claim == null || jwtUtils.isTokenExpired(claim.getExpiration()) || LogoutCache.me().isLogout(claim.getId())) {
-                    HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
-                    httpResponse.setContentType("application/json;charset=utf-8");
-                    httpResponse.getWriter().print(JSONUtil.toJsonStr(Result.fail(401,"token已失效，请重新登录",null)));
-                    Cookie cookie = new Cookie(jwtUtils.getHeader(), null);
-                    cookie.setPath(request.getContextPath() + "/");
-                    cookie.setHttpOnly(true);
-                    httpResponse.addCookie(cookie);
-                    return false;
-                }
-                return executeLogin(request, servletResponse);
-            } catch (Exception e) {
-                log.error("认证异常",e);
+        }
+        try {
+            // 校验jwt
+            Claims claim = jwtUtils.getClaimByToken(jwt);
+            if(claim == null || jwtUtils.isTokenExpired(claim.getExpiration()) || LogoutCache.me().isLogout(claim.getId())) {
                 HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
                 httpResponse.setContentType("application/json;charset=utf-8");
-                try {
-                    httpResponse.getWriter().print(JSONUtil.toJsonStr(Result.fail(401,"认证异常",null)));
-                } catch (IOException ex) {
-                }
+                httpResponse.getWriter().print(JSONUtil.toJsonStr(Result.fail(401,"token已失效，请重新登录",null)));
+                Cookie cookie = new Cookie(jwtUtils.getHeader(), null);
+                cookie.setPath(request.getContextPath() + "/");
+                cookie.setHttpOnly(true);
+                httpResponse.addCookie(cookie);
                 return false;
             }
+            return executeLogin(request, servletResponse);
+        } catch (Exception e) {
+            log.error("认证异常",e);
+            HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
+            httpResponse.setContentType("application/json;charset=utf-8");
+            try {
+                httpResponse.getWriter().print(JSONUtil.toJsonStr(Result.fail(401,"认证异常",null)));
+            } catch (IOException ex) {
+            }
+            return false;
         }
     }
 

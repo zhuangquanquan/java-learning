@@ -1,6 +1,8 @@
 package cn.com.rivercloud.wechat;
 
+import cn.com.rivercloud.wechat.common.schedule.CronSchedulerJob;
 import cn.com.rivercloud.wechat.jwt.JwtUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +12,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @SpringBootTest
+@Slf4j
 class WechatApplicationTests {
 
     //DI注入数据源
@@ -17,7 +20,7 @@ class WechatApplicationTests {
     DataSource dataSource;
 
     @Autowired
-    JwtUtils jwtUtils;
+    CronSchedulerJob cronSchedulerJob;
 
     @Test
     void contextLoads() {
@@ -32,7 +35,12 @@ class WechatApplicationTests {
             //DruidDataSource druidDataSource = (DruidDataSource) dataSource;
             //System.out.println("druidDataSource 数据源最大连接数：" + druidDataSource.getMaxActive());
             //System.out.println("druidDataSource 数据源初始化连接数：" + druidDataSource.getInitialSize());
-            System.out.println(jwtUtils);
+            try {
+                cronSchedulerJob.scheduleJobs();
+            } catch (Exception e) {
+                log.error("调度错误", e);
+            }
+
             //关闭连接
             //connection.close();
         } catch (SQLException e) {
