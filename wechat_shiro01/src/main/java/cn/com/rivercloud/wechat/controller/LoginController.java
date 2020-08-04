@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Objects;
 import java.util.UUID;
@@ -32,18 +34,22 @@ public class LoginController {
     JwtUtils jwtUtils;
 
     //@RequiresRoles(value={"admin","manage","user"},logical = Logical.OR)
-    @RequiresAuthentication
+    //@RequiresAuthentication
     @PostMapping(value = "/logout")
-    public Result logout() {
+    public Result logout(HttpServletRequest request, HttpServletResponse response) {
         Subject subject = SecurityUtils.getSubject();
         Claims claims = jwtUtils.getClaimByToken(subject.getPrincipal().toString()) ;
         LogoutCache.me().put(claims.getId(), claims.getExpiration().getTime());
         //注销
+        Cookie cookie = new Cookie(jwtUtils.getHeader(), null);
+        cookie.setPath(request.getContextPath() + "/");
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
         return Result.succ(null);
     }
 
     @PostMapping(value = "/login")
-    public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
+    public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletRequest request, HttpServletResponse response) {
         String username = loginDto.getUsername();
         String password = loginDto.getPassword();
         User user = userService.getByUserName(username);
@@ -53,6 +59,12 @@ public class LoginController {
         String jwt = jwtUtils.generateToken(UUID.randomUUID().toString(), user.getId());
         response.setHeader("token", jwt);
         response.setHeader("Access-control-Expose-Headers", "token");
+
+        Cookie cookie = new Cookie(jwtUtils.getHeader(), jwt);
+        cookie.setPath(request.getContextPath() + "/");
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
+
         return Result.succ(MapUtil.builder()
                 .put("id", user.getId())
                 .put("userName", user.getUserName())

@@ -4,6 +4,7 @@ import cn.com.rivercloud.wechat.common.lang.Result;
 import cn.hutool.json.JSONUtil;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -30,6 +32,19 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         //判断请求的请求头是否带上 "Token"
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String jwt = request.getHeader(jwtUtils.getHeader());
+        //添加cookie判断
+        if (Strings.isEmpty(jwt) && request.getCookies() != null) {
+            Cookie[] cookies = request.getCookies();
+            int length = cookies.length;
+            for(int i = 0; i < length; ++i) {
+                Cookie cookie = cookies[i];
+                if (cookie.getName().equals("token")) {
+                    jwt = cookie.getValue();
+                    break;
+                }
+            }
+        }
+
         if(StringUtils.isEmpty(jwt)) {
             return true;
         } else {
@@ -63,6 +78,19 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
     protected boolean executeLogin(ServletRequest request, ServletResponse response) {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         String token = httpServletRequest.getHeader(jwtUtils.getHeader());
+
+        //添加cookie判断
+        if (Strings.isEmpty(token) && httpServletRequest.getCookies() != null) {
+            Cookie[] cookies = httpServletRequest.getCookies();
+            int length = cookies.length;
+            for(int i = 0; i < length; ++i) {
+                Cookie cookie = cookies[i];
+                if (cookie.getName().equals("token")) {
+                    token = cookie.getValue();
+                    break;
+                }
+            }
+        }
         JwtToken jwtToken = new JwtToken(token);
         // 提交给realm进行登入，如果错误他会抛出异常并被捕获
         getSubject(request, response).login(jwtToken);
