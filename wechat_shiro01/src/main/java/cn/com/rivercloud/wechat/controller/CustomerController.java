@@ -1,7 +1,6 @@
 package cn.com.rivercloud.wechat.controller;
 
 import cn.com.rivercloud.wechat.common.lang.Result;
-import cn.com.rivercloud.wechat.common.util.RoleEnum;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 //普通用户
 @RequiresRoles("customer")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/customer")
 public class CustomerController {
 
     @GetMapping("/getMessage")

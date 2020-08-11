@@ -1,9 +1,10 @@
 package cn.com.rivercloud.wechat.shiro;
 
+import cn.com.rivercloud.wechat.entity.User;
 import cn.com.rivercloud.wechat.jwt.JwtToken;
 import cn.com.rivercloud.wechat.jwt.JwtUtils;
-import cn.com.rivercloud.wechat.entity.User;
 import cn.com.rivercloud.wechat.service.impl.UserServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashSet;
 import java.util.Set;
 
-
+@Slf4j
 @Component
 public class UserRealm extends AuthorizingRealm {
 
@@ -25,20 +26,16 @@ public class UserRealm extends AuthorizingRealm {
     @Autowired
     JwtUtils jwtUtils;
 
-    /**
-     * 必须重写此方法，不然会报错
-     */
+    //必须重写此方法，不然会报错
     @Override
     public boolean supports(AuthenticationToken token) {
         return token instanceof JwtToken;
     }
 
-    /**
-     * 默认使用此方法进行用户名正确与否验证，错误抛出异常即可。
-     */
+    //默认使用此方法进行用户名正确与否验证，错误抛出异常即可。
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        System.out.println("————身份认证方法————");
+        log.info("————身份认证方法————");
         String token = (String) authenticationToken.getCredentials();
         // 解密获得username，用于和数据库进行对比
         String userId = jwtUtils.getClaimByToken(token).getSubject();
@@ -53,12 +50,10 @@ public class UserRealm extends AuthorizingRealm {
         return new SimpleAuthenticationInfo(token, token, getName());
     }
 
-    /**
-     * 只有当需要检测用户权限的时候才会调用此方法，例如checkRole,checkPermission之类的
-     */
+    //只有当需要检测用户权限的时候才会调用此方法，例如checkRole,checkPermission之类的
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        System.out.println("————权限认证————");
+        log.info("————权限认证————");
         String userId = jwtUtils.getClaimByToken(principals.toString()).getSubject();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         User user = userService.getById(Long.valueOf(userId));

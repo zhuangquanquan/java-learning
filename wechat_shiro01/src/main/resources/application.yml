@@ -19,7 +19,13 @@ mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
 logging:
   config: classpath:spring-logback.xml
+# token配置
 jwt:
   secret: f4e2e52034348f86b67cde581c0f9eb5
-  expire: 1
+  expire: 5
   header: token
+
+# 不需要认证的url
+path:
+  ignored-token-path: /login
+

@@ -5,7 +5,7 @@
 <configuration>
 
     <typeAliases>
-        <typeAlias type="cn.com.rivercloud.wechat.pojo.User" alias="User" />
+        <typeAlias type="cn.com.rivercloud.wechat.entity.User" alias="User" />
 
     </typeAliases>
 </configuration>

@@ -15,11 +15,8 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Objects;
@@ -42,10 +39,7 @@ public class LoginController {
         Claims claims = jwtUtils.getClaimByToken(subject.getPrincipal().toString()) ;
         LogoutCache.me().put(claims.getId(), claims.getExpiration().getTime());
         //注销
-        Cookie cookie = new Cookie(jwtUtils.getHeader(), null);
-        cookie.setPath(request.getContextPath() + "/");
-        cookie.setHttpOnly(true);
-        response.addCookie(cookie);
+        jwtUtils.addCookie(request, response, null);
         return Result.succ(null);
     }
 
@@ -57,22 +51,24 @@ public class LoginController {
         if (Objects.isNull(user) || Strings.isEmpty(user.getPassword()) || !user.getPassword().equals(password)) {
            return Result.fail("用户名或密码错误");
         }
-        String jwt = jwtUtils.generateToken(UUID.randomUUID().toString(), user.getId());
-        response.setHeader(jwtUtils.getHeader(), jwt);
+        String token = jwtUtils.generateToken(UUID.randomUUID().toString(), user.getId());
+        response.setHeader(jwtUtils.getHeader(), token);
         response.setHeader("Access-control-Expose-Headers", jwtUtils.getHeader());
 
-        Cookie cookie = new Cookie(jwtUtils.getHeader(), jwt);
-        cookie.setPath(request.getContextPath() + "/");
-        cookie.setHttpOnly(true);
-        response.addCookie(cookie);
+        jwtUtils.addCookie(request, response, token);
 
         return Result.succ(MapUtil.builder()
                 .put("id", user.getId())
                 .put("userName", user.getUserName())
                 .put("realName", user.getRealName())
                 .put("role", user.getRole())
-                .put(jwtUtils.getHeader(), jwt)
+                .put(jwtUtils.getHeader(), token)
                 .map());
+    }
+
+    @RequestMapping(value = "/notLogin", method = RequestMethod.GET)
+    public Result notLogin() {
+        return Result.fail("未登陆");
     }
 
 
