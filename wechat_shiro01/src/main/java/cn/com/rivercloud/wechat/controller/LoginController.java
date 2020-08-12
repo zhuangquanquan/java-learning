@@ -1,21 +1,21 @@
 package cn.com.rivercloud.wechat.controller;
 
-import cn.com.rivercloud.wechat.common.constant.TableFieldConstant;
 import cn.com.rivercloud.wechat.common.dto.LoginDto;
 import cn.com.rivercloud.wechat.common.lang.Result;
-import cn.com.rivercloud.wechat.entity.User;
+import cn.com.rivercloud.wechat.entity.user.User;
 import cn.com.rivercloud.wechat.jwt.JwtUtils;
 import cn.com.rivercloud.wechat.jwt.LogoutCache;
-import cn.com.rivercloud.wechat.service.impl.UserServiceImpl;
+import cn.com.rivercloud.wechat.service.user.impl.UserServiceImpl;
 import cn.hutool.core.map.MapUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.jsonwebtoken.Claims;
 import org.apache.logging.log4j.util.Strings;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,7 +47,7 @@ public class LoginController {
     public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletRequest request, HttpServletResponse response) {
         String username = loginDto.getUsername();
         String password = loginDto.getPassword();
-        User user = userService.getOne(new QueryWrapper<User>().eq(TableFieldConstant.user_table_filed_userName, username));
+        User user = userService.getOne(username);
         if (Objects.isNull(user) || Strings.isEmpty(user.getPassword()) || !user.getPassword().equals(password)) {
            return Result.fail("用户名或密码错误");
         }
@@ -61,16 +61,8 @@ public class LoginController {
                 .put("id", user.getId())
                 .put("userName", user.getUserName())
                 .put("realName", user.getRealName())
-                .put("role", user.getRole())
                 .put(jwtUtils.getHeader(), token)
                 .map());
     }
-
-    @RequestMapping(value = "/notLogin", method = RequestMethod.GET)
-    public Result notLogin() {
-        return Result.fail("未登陆");
-    }
-
-
 
 }
