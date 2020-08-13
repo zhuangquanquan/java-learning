@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties("path")
+@ConfigurationProperties(prefix = "path")
 public class PathConfig {
 
     private String[] ignoredTokenPath;

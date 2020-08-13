@@ -24,8 +24,12 @@ jwt:
   secret: f4e2e52034348f86b67cde581c0f9eb5
   expire: 5
   header: token
-
+# 系统基础配置
+system:
+  base:
+    captcha-enable: true
+    captcha-loginFailNumEnable: 1
 # 不需要认证的url
 path:
-  ignored-token-path: /login
+  ignored-token-path: /login,/kaptcha
 

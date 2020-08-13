@@ -1,11 +1,13 @@
 package cn.com.rivercloud.wechat.common.exception;
 
 import cn.com.rivercloud.wechat.common.lang.Result;
+import com.fasterxml.jackson.core.JsonParseException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.ShiroException;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -44,8 +46,14 @@ public class GlobalExceptionHandler {
         log.error("实体校验异常：----------------{}", e);
         BindingResult bindingResult = e.getBindingResult();
         ObjectError objectError = bindingResult.getAllErrors().stream().findFirst().get();
-
         return Result.fail(objectError.getDefaultMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(value = HttpMessageNotReadableException.class)
+    public Result handler(HttpMessageNotReadableException e) {
+        log.error("不识别的http消息：----------------{}", e);
+        return Result.fail("不识别的http消息");
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
