@@ -7,7 +7,7 @@ import cn.com.rivercloud.wechat.wx.common.dto.WeChatAuthDto;
 import cn.com.rivercloud.wechat.wx.common.util.MessageUtil;
 import cn.com.rivercloud.wechat.wx.entity.TemplateList;
 import cn.com.rivercloud.wechat.wx.entity.message.TextMessage;
-import cn.com.rivercloud.wechat.wx.service.WXService;
+import cn.com.rivercloud.wechat.wx.service.WeChatService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -31,7 +31,7 @@ public class WeChatController {
     WeChatConfig weChatConfig;
 
     @Autowired
-    WXService wxService;
+    WeChatService weChatService;
 
 
     @GetMapping("/sign")
@@ -92,40 +92,26 @@ public class WeChatController {
 
     @GetMapping("/getUserList")
     public void getUserList() {
-        wxService.getUserList();
+        weChatService.getUserList();
     }
 
     @GetMapping("/getTemplateList")
     public Result getTemplateList() {
-        TemplateList templateList = wxService.getTemplateList();
+        TemplateList templateList = weChatService.getTemplateList();
         if (Objects.isNull(templateList) || Objects.isNull(templateList.getTemplate_list()) || templateList.getTemplate_list().isEmpty()) {
             return Result.fail("模板列表为空，未获取到模板列表");
         }
         System.out.println("templateList:" + templateList);
-        wxService.sendTemplate();
+        weChatService.sendTemplate();
         return Result.succ("");
     }
 
-    /*@GetMapping("/getTemplateId")
-    public Result getTemplateId() {
-        wxService.getTemplateId();
-        return Result.succ("");
-    }*/
 
     @GetMapping("/sendTemplateMessage")
     public Result sendTemplateMessage() {
-        wxService.sendTemplate();
+        weChatService.sendTemplate();
         return Result.succ("");
     }
-
-    @GetMapping("/getUser")
-    public Result getUser() {
-        wxService.getUser();
-        return Result.succ("");
-    }
-
-
-
 
 
 }

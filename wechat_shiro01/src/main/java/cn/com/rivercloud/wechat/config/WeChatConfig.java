@@ -31,6 +31,10 @@ public class WeChatConfig {
     private String customerTemplateId;
 
     /**
+     * 获取code后的回调url
+     */
+    private String redirectUriCodeUrl;
+    /**
      {{workListType,DATA}}
      {{date,DATA}}
      客户公司名称：{{realName,DATA}}

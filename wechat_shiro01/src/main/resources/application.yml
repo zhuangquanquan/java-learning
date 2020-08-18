@@ -36,15 +36,16 @@ wechat:
   appID: wxbdfcead38fdfeb8d
   appsecret: cde9e1f344cf6bf9f958003573ce348c
   urlMaps: {
-      accessToken: "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s",
-      user: "https://api.weixin.qq.com/cgi-bin/user/info?access_token=%s&openid=%s&lang=zh_CN",
+      accessToken: "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s", #获取token
       userList: "https://api.weixin.qq.com/cgi-bin/user/get?access_token=%s&next_openid=%s",
       templateList: "https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=%s",
-      templateId: "https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token=%s",
-      sendTemplateMessage: "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s"
+      sendTemplateMessage: "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s", #发送模板消息
+      code: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect",
+      codeExchangeAccessToken: "https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code"
   }
-  manageTemplateId: 56qqkcgnpjuXI8pMmVZdB7mDFW6fOTEyzjwQ7O-qfIw
-  customerTemplateId: gPS2OaJCtsyYxX5VY88gRTiplQP7d0NFzjtYSeuDrEo
+  manageTemplateId: 56qqkcgnpjuXI8pMmVZdB7mDFW6fOTEyzjwQ7O-qfIw #客户经理模板Id
+  customerTemplateId: gPS2OaJCtsyYxX5VY88gRTiplQP7d0NFzjtYSeuDrEo #客户模板Id
+  redirectUriCodeUrl: "http://a0f7013329bf.ngrok.io/wechat/auth" # 获取code后的回调url,需要在 网页帐号->网页授权获取用户基本信息下配置 授权回调页面域名
 
 
 

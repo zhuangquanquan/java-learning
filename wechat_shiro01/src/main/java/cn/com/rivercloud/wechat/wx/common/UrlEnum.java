@@ -8,11 +8,11 @@ import lombok.Getter;
 public enum UrlEnum {
 
     accessToken("accessToken", "获取token"),
-    user("user", "获取用户基本信息"),
     userList("userList", "获取用户列表"),
     templateList("templateList", "获取模板列表"),
-    templateId("templateId", "获得模板Id"),
-    sendTemplateMessage("sendTemplateMessage", "发送模板消息");
+    sendTemplateMessage("sendTemplateMessage", "发送模板消息"),
+    code("code", "用户同意授权，获取code"),
+    codeExchangeAccessToken("codeExchangeAccessToken", "通过code换取网页授权access_token");
 
     private String methodName;
     private String summary;
