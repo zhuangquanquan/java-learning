@@ -19,6 +19,7 @@ mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
 logging:
   config: classpath:spring-logback.xml
+
 # token配置
 jwt:
   secret: f4e2e52034348f86b67cde581c0f9eb5
@@ -26,10 +27,20 @@ jwt:
   header: token
 # 系统基础配置
 system:
-  base:
     captcha-enable: true
     captcha-loginFailNumEnable: 1
-# 不需要认证的url
-path:
-  ignored-token-path: /login,/kaptcha
+    ignored-token-path: /login,/kaptcha
+# 微信认证
+wechat:
+  token: xw
+  appID: wxbdfcead38fdfeb8d
+  appsecret: cde9e1f344cf6bf9f958003573ce348c
+  urlMaps: {
+      accessToken: "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s",
+      userList: "https://api.weixin.qq.com/cgi-bin/user/get?access_token=%s&next_openid=%s",
+      templateList: "https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=%s",
+      sendTemplateMessage: "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s"
+  }
+
+
 

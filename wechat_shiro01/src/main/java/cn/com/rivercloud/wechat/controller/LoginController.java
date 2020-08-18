@@ -3,11 +3,12 @@ package cn.com.rivercloud.wechat.controller;
 import cn.com.rivercloud.wechat.common.dto.LoginDto;
 import cn.com.rivercloud.wechat.common.lang.Result;
 import cn.com.rivercloud.wechat.common.util.UserLoginErrorCounts;
-import cn.com.rivercloud.wechat.config.SystemBaseConfig;
+import cn.com.rivercloud.wechat.config.SystemConfig;
 import cn.com.rivercloud.wechat.entity.user.User;
 import cn.com.rivercloud.wechat.jwt.JwtUtils;
 import cn.com.rivercloud.wechat.jwt.LogoutCache;
 import cn.com.rivercloud.wechat.service.user.impl.UserServiceImpl;
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.map.MapUtil;
 import com.google.code.kaptcha.Producer;
 import io.jsonwebtoken.Claims;
@@ -47,7 +48,7 @@ public class LoginController {
     private Producer codeProducer;
 
     @Autowired
-    private SystemBaseConfig systemBaseConfig;
+    private SystemConfig systemConfig;
 
     private static final String CAPTCHA_SESSION_KEY = "-CAPTCHA-SESSION-KEY-";
 
@@ -69,9 +70,9 @@ public class LoginController {
         String username = loginDto.getUsername();
         String password = loginDto.getPassword();
         //开启验证码
-        if (systemBaseConfig.isCaptchaEnable()) {
+        if (systemConfig.isCaptchaEnable()) {
             int errCount = UserLoginErrorCounts.getLoginErrorCounts(request.getServletContext(), username);
-            if (errCount >= systemBaseConfig.getCaptchaLoginFailNumEnable()) {
+            if (errCount >= systemConfig.getCaptchaLoginFailNumEnable()) {
                 if (Strings.isEmpty(loginDto.getCode())) {
                     return Result.fail("验证码不能为空");
                 }
@@ -90,6 +91,7 @@ public class LoginController {
             UserLoginErrorCounts.updateLoginErrorCounts(request.getServletContext(), username, false);
             return Result.fail("用户名或密码错误");
         }
+        BeanUtil.copyProperties(user, new User(), "id", "userName", "created", "status");
         String token = jwtUtils.generateToken(UUID.randomUUID().toString(), user.getId());
         response.setHeader(jwtUtils.getHeader(), token);
         response.setHeader("Access-control-Expose-Headers", jwtUtils.getHeader());

@@ -27,7 +27,7 @@ public class ShiroConfig {
      * 先走 filter ，然后 filter 如果检测到请求头存在 token，则用 token 去 login，走 Realm 去验证
      */
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager, @Qualifier("pathConfig") PathConfig pathConfig) {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager, @Qualifier("systemConfig") SystemConfig systemConfig) {
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
         factoryBean.setSecurityManager(securityManager);
         // 添加自己的过滤器并且取名为jwt
@@ -39,7 +39,7 @@ public class ShiroConfig {
         //factoryBean.setUnauthorizedUrl("/unauthorized/无权限");
         Map<String, String> filterRuleMap = new HashMap<>();
         // 所有请求通过我们自己的JWT Filter
-        String[] ignoredTokenPath = pathConfig.getIgnoredTokenPath();
+        String[] ignoredTokenPath = systemConfig.getIgnoredTokenPath();
         Arrays.stream(ignoredTokenPath).forEach(url -> {
             filterRuleMap.put(url, "anon");
         });

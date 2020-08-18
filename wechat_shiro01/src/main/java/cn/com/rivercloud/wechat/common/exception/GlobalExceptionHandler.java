@@ -1,7 +1,6 @@
 package cn.com.rivercloud.wechat.common.exception;
 
 import cn.com.rivercloud.wechat.common.lang.Result;
-import com.fasterxml.jackson.core.JsonParseException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.ShiroException;
 import org.apache.shiro.authz.UnauthenticatedException;
@@ -61,6 +60,13 @@ public class GlobalExceptionHandler {
     public Result handler(IllegalArgumentException e) {
         log.error("Assert异常：----------------{}", e);
         return Result.fail(e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(value = NoneUrlException.class)
+    public Result handler(NoneUrlException e) {
+        log.error("通过方法名未找到对应的方法：----------------{}", e);
+        return Result.fail("通过方法名未找到对应的方法");
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
