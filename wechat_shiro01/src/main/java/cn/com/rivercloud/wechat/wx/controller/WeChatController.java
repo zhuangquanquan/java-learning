@@ -51,12 +51,6 @@ public class WeChatController {
         }
     }
 
-    /*@GetMapping("/getAccessToken")
-    public Result getAssessToken() {
-       AssessToken rep = wxService.getToken();
-       return Result.succ(MapUtil.builder().put("token", rep.getAccess_token()).put("expires", rep.getExpires_in()).map());
-    }*/
-
     @PostMapping("/sign")
     public void signPost(HttpServletRequest request, HttpServletResponse response) {
         Map<String, String> paramsMap = MessageUtil.parseXml(request);
@@ -90,6 +84,12 @@ public class WeChatController {
         }
     }
 
+    /*@GetMapping("/getAccessToken")
+      public Result getAssessToken() {
+         AssessToken rep = wxService.getToken();
+         return Result.succ(MapUtil.builder().put("token", rep.getAccess_token()).put("expires", rep.getExpires_in()).map());
+      }*/
+
     @GetMapping("/getUserList")
     public void getUserList() {
         wxService.getUserList();
@@ -103,6 +103,24 @@ public class WeChatController {
         }
         System.out.println("templateList:" + templateList);
         wxService.sendTemplate();
+        return Result.succ("");
+    }
+
+    /*@GetMapping("/getTemplateId")
+    public Result getTemplateId() {
+        wxService.getTemplateId();
+        return Result.succ("");
+    }*/
+
+    @GetMapping("/sendTemplateMessage")
+    public Result sendTemplateMessage() {
+        wxService.sendTemplate();
+        return Result.succ("");
+    }
+
+    @GetMapping("/getUser")
+    public Result getUser() {
+        wxService.getUser();
         return Result.succ("");
     }
 

@@ -37,10 +37,17 @@ wechat:
   appsecret: cde9e1f344cf6bf9f958003573ce348c
   urlMaps: {
       accessToken: "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s",
+      user: "https://api.weixin.qq.com/cgi-bin/user/info?access_token=%s&openid=%s&lang=zh_CN",
       userList: "https://api.weixin.qq.com/cgi-bin/user/get?access_token=%s&next_openid=%s",
       templateList: "https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=%s",
+      templateId: "https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token=%s",
       sendTemplateMessage: "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s"
   }
+  manageTemplateId: 56qqkcgnpjuXI8pMmVZdB7mDFW6fOTEyzjwQ7O-qfIw
+  customerTemplateId: gPS2OaJCtsyYxX5VY88gRTiplQP7d0NFzjtYSeuDrEo
+
+
+
 
 
 

@@ -3,8 +3,11 @@ package cn.com.rivercloud.wechat.wx.service;
 import cn.com.rivercloud.wechat.common.exception.NoneUrlException;
 import cn.com.rivercloud.wechat.config.WeChatConfig;
 import cn.com.rivercloud.wechat.wx.common.UrlEnum;
+import cn.com.rivercloud.wechat.wx.common.dto.TemplateDataDto;
+import cn.com.rivercloud.wechat.wx.common.dto.TemplateDto;
 import cn.com.rivercloud.wechat.wx.entity.AssessToken;
 import cn.com.rivercloud.wechat.wx.entity.TemplateList;
+import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
@@ -15,6 +18,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 @Slf4j
@@ -64,43 +69,50 @@ public class WXService {
 
     public String sendTemplate() {
         String url = String.format(url(UrlEnum.sendTemplateMessage), assessToken.getAccess_token());
-        String str = "{\n" +
-                "           \"touser\":\"oxhxl5m9oMuaWH0Cd53hYqJO-VCY\",\n" +
-                "           \"template_id\":\"gPS2OaJCtsyYxX5VY88gRTiplQP7d0NFzjtYSeuDrEo\",\n" +
-                "           \"url\":\"http://weixin.qq.com/download\",  \n" +
-                "           \"data\":{\n" +
-                "                   \"first\": {\n" +
-                "                       \"value\":\"恭喜你购买成功！\",\n" +
-                "                       \"color\":\"#173177\"\n" +
-                "                   },\n" +
-                "                   \"keyword1\":{\n" +
-                "                       \"value\":\"巧克力\",\n" +
-                "                       \"color\":\"#173177\"\n" +
-                "                   },\n" +
-                "                   \"keyword2\": {\n" +
-                "                       \"value\":\"39.8元\",\n" +
-                "                       \"color\":\"#173177\"\n" +
-                "                   },\n" +
-                "                   \"keyword3\": {\n" +
-                "                       \"value\":\"2014年9月22日\",\n" +
-                "                       \"color\":\"#173177\"\n" +
-                "                   },\n" +
-                "                   \"remark\":{\n" +
-                "                       \"value\":\"欢迎再次购买！\",\n" +
-                "                       \"color\":\"#173177\"\n" +
-                "                   }\n" +
-                "           }\n" +
-                "       }";
+        TemplateDto templateDto = new TemplateDto();
+        Map<String,TemplateDataDto> data = new HashMap<>();
+        StringBuffer sb = new StringBuffer();
+        sb.append("正式单-开通提醒\n");
+        sb.append("6月20号\n");
+        sb.append("客户公司名称:北京xx科技有限公司\n");
+        sb.append("服务套餐:安全检测服务\n");
+        sb.append("开通日期:2020.10.10\n");
+        sb.append("到期日期:2021.01.09\n");
+        data.put("message", new TemplateDataDto().setValue(sb.toString()));
+        templateDto.setTouser("oxhxl5m9oMuaWH0Cd53hYqJO-VCY")
+                .setTemplate_id(weChatConfig.getManageTemplateId())
+                //.setUrl("http://www.baidu.com")
+                .setAppid(weChatConfig.getAppID())
+                .setData(data);
+        String jsonStr = JSONUtil.toJsonStr(templateDto);
+        System.out.println("jsonStr=>" + jsonStr);
         HttpHeaders headers = new HttpHeaders();
         MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");
         headers.setContentType(type);
         headers.add("Accept", MediaType.APPLICATION_JSON.toString());
-        HttpEntity<String> formEntity = new HttpEntity<String>(str, headers);
+        HttpEntity<String> formEntity = new HttpEntity<String>(jsonStr, headers);
         String resStr = client.postForObject(url, formEntity, String.class);
         System.out.println(resStr);
         return resStr;
     }
 
+    public void getTemplateId() {
+        String url = String.format(url(UrlEnum.templateId), assessToken.getAccess_token());
+        HttpHeaders headers = new HttpHeaders();
+        MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");
+        headers.setContentType(type);
+        headers.add("Accept", MediaType.APPLICATION_JSON.toString());
+        String str = "{\"template_id_short\": \"f8YgMX3-eNKknbLBBENs80lyG2xMXJWlFpED32PkWjo\"}";
+        HttpEntity<String> formEntity = new HttpEntity<String>(str, headers);
+        String resStr = client.postForObject(url, formEntity, String.class);
+        System.out.println(resStr);
+    }
+
+    public void getUser() {
+        String url = String.format(url(UrlEnum.user), assessToken.getAccess_token(), "oxhxl5m9oMuaWH0Cd53hYqJO-VCY");
+        String resStr = client.getForObject(url, String.class);
+        System.out.println(resStr);
+    }
 
 
 
