@@ -3,6 +3,8 @@ package cn.com.rivercloud.wechat.wx.service;
 import cn.com.rivercloud.wechat.common.exception.NoneUrlException;
 import cn.com.rivercloud.wechat.config.WeChatConfig;
 import cn.com.rivercloud.wechat.wx.common.UrlEnum;
+import cn.com.rivercloud.wechat.wx.entity.CodeExchangeAccessToken;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,6 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.util.Objects;
 
 @Slf4j
 @Service
@@ -47,16 +47,11 @@ public class WeChatAuthService {
     /**
      * 获取请求用户信息的access_token
      */
-    public String codeExchangeAccessToken(String code) {
-        try {
-            String url = String.format(url(UrlEnum.codeExchangeAccessToken), weChatConfig.getAppID(), weChatConfig.getAppsecret(), code);
-            String resStr = client.getForObject(url, String.class);
-            System.out.println("getUserInfoAccessToken=>" + resStr);
-            return resStr;
-        } catch (Exception ex) {
-            log.error("fail to request wechat access token. [error={}]", ex);
-        }
-        return "";
+    public CodeExchangeAccessToken codeExchangeAccessToken(String code) {
+        String url = String.format(url(UrlEnum.codeExchangeAccessToken), weChatConfig.getAppID(), weChatConfig.getAppsecret(), code);
+        String resStr = client.getForObject(url, String.class);
+        CodeExchangeAccessToken codeExchangeAccessToken = JSONObject.parseObject(resStr, CodeExchangeAccessToken.class);
+        return codeExchangeAccessToken;
     }
 
 

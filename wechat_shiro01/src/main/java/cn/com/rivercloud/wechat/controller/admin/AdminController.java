@@ -1,4 +1,4 @@
-package cn.com.rivercloud.wechat.controller;
+package cn.com.rivercloud.wechat.controller.admin;
 
 import cn.com.rivercloud.wechat.common.lang.Result;
 import cn.com.rivercloud.wechat.jwt.Auths;

@@ -2,6 +2,7 @@ package cn.com.rivercloud.wechat.wx.controller;
 
 import cn.com.rivercloud.wechat.common.lang.Result;
 import cn.com.rivercloud.wechat.config.WeChatConfig;
+import cn.com.rivercloud.wechat.wx.entity.CodeExchangeAccessToken;
 import cn.com.rivercloud.wechat.wx.service.WeChatAuthService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -25,8 +25,8 @@ public class WeChatAuthController {
     @Autowired
     WeChatAuthService weChatAuthService;
 
-    @GetMapping("/getRequestCodeUrl")
-    public Result sign(HttpServletResponse response) {
+    @GetMapping("/getCode")
+    public Result getCode(HttpServletResponse response) {
         String str = null;
         try {
             str = weChatAuthService.getCode(response);
@@ -38,10 +38,10 @@ public class WeChatAuthController {
 
     }
 
-    @GetMapping("/auth")
-    public Result auth(HttpServletRequest request,@Param("code") String code) {
-        weChatAuthService.codeExchangeAccessToken(code);//通过这个code获取access_token
-        return Result.succ("");
+    @GetMapping("/codeExchangeAccessToken")
+    public Result codeExchangeAccessToken(@Param("code") String code) {
+        CodeExchangeAccessToken codeExchangeAccessToken = weChatAuthService.codeExchangeAccessToken(code);
+        return Result.succ(codeExchangeAccessToken);
     }
 
 

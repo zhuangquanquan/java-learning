@@ -1,5 +1,9 @@
 server:
   port: 8081
+# tomcat:
+  #    remoteip:
+  #      remote-ip-header: x-forwarded-for
+  #      protocol-header: x-forwarded-proto
 
 # 配置参考：https://github.com/alibaba/druid/wiki/DruidDataSource%E9%85%8D%E7%BD%AE%E5%B1%9E%E6%80%A7%E5%88%97%E8%A1%A8
 spring:
@@ -14,11 +18,17 @@ spring:
     validationQueryTimeout: 5000
     testWhileIdle: true
     validationQuery: SELECT 1 FROM DUAL
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   config-location: classpath:mybatis/mybatis-config.xml
 logging:
   config: classpath:spring-logback.xml
+
 
 # token配置
 jwt:
@@ -45,10 +55,4 @@ wechat:
   }
   manageTemplateId: 56qqkcgnpjuXI8pMmVZdB7mDFW6fOTEyzjwQ7O-qfIw #客户经理模板Id
   customerTemplateId: gPS2OaJCtsyYxX5VY88gRTiplQP7d0NFzjtYSeuDrEo #客户模板Id
-  redirectUriCodeUrl: "http://a0f7013329bf.ngrok.io/wechat/auth" # 获取code后的回调url,需要在 网页帐号->网页授权获取用户基本信息下配置 授权回调页面域名
-
-
-
-
-
-
+  redirectUriCodeUrl: "http://e8aa6f145531.ngrok.io/wechat/codeExchangeAccessToken" # 获取code后的回调url,需要在 网页帐号->网页授权获取用户基本信息下配置 授权回调页面域名

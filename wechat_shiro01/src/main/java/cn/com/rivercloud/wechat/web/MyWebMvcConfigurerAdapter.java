@@ -1,17 +1,18 @@
 package cn.com.rivercloud.wechat.web;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 
+/*
 @Configuration
 @EnableWebMvc
 public class MyWebMvcConfigurerAdapter implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/", "classpath:templates");
+        System.out.println("registry => " + "registry");
+        registry.addResourceHandler(new String[] { "/**" }).addResourceLocations(new String[] { "classpath:/static/", "classpath:/templates/" });
     }
 
 }
+*/
