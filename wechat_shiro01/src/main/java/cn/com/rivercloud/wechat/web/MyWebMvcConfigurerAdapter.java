@@ -1,9 +1,10 @@
+/*
 package cn.com.rivercloud.wechat.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 
-/*
+
 @Configuration
 @EnableWebMvc
 public class MyWebMvcConfigurerAdapter implements WebMvcConfigurer {
@@ -15,4 +16,5 @@ public class MyWebMvcConfigurerAdapter implements WebMvcConfigurer {
     }
 
 }
+
 */
