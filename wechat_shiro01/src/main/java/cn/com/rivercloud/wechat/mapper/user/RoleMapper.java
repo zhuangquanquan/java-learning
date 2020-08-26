@@ -1,7 +1,7 @@
 package cn.com.rivercloud.wechat.mapper.user;
 
 
-import cn.com.rivercloud.wechat.entity.user.Role;
+import cn.com.rivercloud.wechat.user.entity.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 

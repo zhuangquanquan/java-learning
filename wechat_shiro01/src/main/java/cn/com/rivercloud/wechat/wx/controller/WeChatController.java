@@ -2,7 +2,7 @@ package cn.com.rivercloud.wechat.wx.controller;
 
 import cn.com.rivercloud.wechat.common.lang.Result;
 import cn.com.rivercloud.wechat.config.WeChatConfig;
-import cn.com.rivercloud.wechat.wx.common.Signature;
+import cn.com.rivercloud.wechat.wx.common.util.Signature;
 import cn.com.rivercloud.wechat.wx.common.dto.WeChatAuthDto;
 import cn.com.rivercloud.wechat.wx.common.util.MessageUtil;
 import cn.com.rivercloud.wechat.wx.entity.TemplateList;

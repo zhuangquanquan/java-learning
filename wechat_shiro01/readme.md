@@ -1,1 +1,1 @@
-需要每次在请求头携带Token
+springboot + mybatis + shiro权限 + 微信部分接口开发

@@ -5,11 +5,11 @@
 <configuration>
 
     <typeAliases>
-        <typeAlias type="cn.com.rivercloud.wechat.entity.user.User" alias="User" />
-        <typeAlias type="cn.com.rivercloud.wechat.entity.user.Role" alias="Role" />
-        <typeAlias type="cn.com.rivercloud.wechat.entity.user.Permission" alias="Permission" />
-        <typeAlias type="cn.com.rivercloud.wechat.entity.user.RolePermission" alias="RolePermission" />
-        <typeAlias type="cn.com.rivercloud.wechat.entity.user.UserRole" alias="UserRole" />
+        <typeAlias type="cn.com.rivercloud.wechat.user.entity.User" alias="User" />
+        <typeAlias type="cn.com.rivercloud.wechat.user.entity.Role" alias="Role" />
+        <typeAlias type="cn.com.rivercloud.wechat.user.entity.Permission" alias="Permission" />
+        <typeAlias type="cn.com.rivercloud.wechat.user.entity.RolePermission" alias="RolePermission" />
+        <typeAlias type="cn.com.rivercloud.wechat.user.entity.UserRole" alias="UserRole" />
     </typeAliases>
 
 </configuration>

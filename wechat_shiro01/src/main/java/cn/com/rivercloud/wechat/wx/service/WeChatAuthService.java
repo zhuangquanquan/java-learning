@@ -2,7 +2,7 @@ package cn.com.rivercloud.wechat.wx.service;
 
 import cn.com.rivercloud.wechat.common.exception.NoneUrlException;
 import cn.com.rivercloud.wechat.config.WeChatConfig;
-import cn.com.rivercloud.wechat.wx.common.UrlEnum;
+import cn.com.rivercloud.wechat.wx.common.constant.UrlEnum;
 import cn.com.rivercloud.wechat.wx.entity.CodeExchangeAccessToken;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
