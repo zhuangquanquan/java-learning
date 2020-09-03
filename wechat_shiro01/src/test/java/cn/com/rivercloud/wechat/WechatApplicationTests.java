@@ -67,4 +67,9 @@ class WechatApplicationTests {
         System.out.println(result);
     }
 
+    @Test
+    void testRestTemplate_testAttackLogList() {
+        client.testOssimAttackLogList();
+    }
+
 }

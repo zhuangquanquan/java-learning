@@ -56,3 +56,9 @@ wechat:
   manageTemplateId: 56qqkcgnpjuXI8pMmVZdB7mDFW6fOTEyzjwQ7O-qfIw #客户经理模板Id
   customerTemplateId: gPS2OaJCtsyYxX5VY88gRTiplQP7d0NFzjtYSeuDrEo #客户模板Id
   redirectUriCodeUrl: "http://e8aa6f145531.ngrok.io/wechat/codeExchangeAccessToken" # 获取code后的回调url,需要在 网页帐号->网页授权获取用户基本信息下配置 授权回调页面域名
+
+# ossim对接
+ossim:
+  protocol: https
+  ip: 10.2.10.130
+  port: 8011
