@@ -1,4 +1,4 @@
-package cn.com.rivercloud.wechat.common.constant;
+package cn.com.rivercloud.wechat.manage.common.constant;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public enum ServiceTypeGroupEnum {
+public enum ServiceGroupEnum {
 
     monitor(1, "安全检测服务套餐"),
     base(2, "基础防护服务套餐"),
@@ -18,7 +18,7 @@ public enum ServiceTypeGroupEnum {
     private int type;
     private String summary;
 
-    ServiceTypeGroupEnum(int type, String summary) {
+    ServiceGroupEnum(int type, String summary) {
         this.type = type;
         this.summary = summary;
     }
@@ -32,11 +32,11 @@ public enum ServiceTypeGroupEnum {
     }
 
     public static boolean containsType(int type) {
-        Optional<ServiceTypeGroupEnum> first = Arrays.stream(values()).filter(e -> e.getType() == type).findFirst();
+        Optional<ServiceGroupEnum> first = Arrays.stream(values()).filter(e -> e.getType() == type).findFirst();
         return first.isPresent();
     }
 
-    public static Map<Integer, ServiceTypeGroupEnum> toMap() {
+    public static Map<Integer, ServiceGroupEnum> toMap() {
         return Arrays.stream(values()).collect(Collectors.toMap(e -> e.getType(), Function.identity()));
     }
 }

@@ -1,4 +1,4 @@
-package cn.com.rivercloud.wechat.common.constant;
+package cn.com.rivercloud.wechat.manage.common.constant;
 
 import java.util.Arrays;
 import java.util.Map;

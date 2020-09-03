@@ -39,7 +39,7 @@ jwt:
 system:
     captcha-enable: true
     captcha-loginFailNumEnable: 1
-    ignored-token-path: /login,/kaptcha
+    ignored-token-path: /login,/kaptcha,/manage/**
 # 微信认证
 wechat:
   token: xw
